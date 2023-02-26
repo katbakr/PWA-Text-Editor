@@ -35,10 +35,17 @@ export const getDb = async () => {
   // Open up the desired object store.
   const store = tx.objectStore('jate');
   // Use the .getAll() method to get all data in the database.
-  const request = store.getAll();
+  const request = store.get(1);
   // Get confirmation of the request.
   const result = await request;
-  console.log('🚀 - data saved to the database', result);
+  // console.log('🚀 - data saved to the database', result);
+  result
+  ?console.log('🚀 - data retrieved from the database', result.value)
+  : console.log('🚀 - data not found in the database');
+// Check if a variable is defined and if it is, return it. See MDN Docs on Optional Chaining (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
+return result?.value;
+
+
 };
 
 initdb();
